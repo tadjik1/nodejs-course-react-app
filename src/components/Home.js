@@ -1,17 +1,32 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
 
-import Chat from './Chat';
+import HomeMenu from './HomeMenu';
+import HomeCarousel from './HomeCarousel';
+import Recommendations from './Recommendations';
 
-function Home({ token, ...rest }) {
+function Home() {
   return (
-    <h1>Home</h1>
+    <React.Fragment>
+      <div className="backdrop"></div>
+      <div className="container">
+        <div className="row flex-column-reverse flex-lg-row">
+          <div className="col-lg-3">
+            <HomeMenu />
+          </div>
+          <div className="col-lg-9">
+            <HomeCarousel />
+          </div>
+        </div>
+      </div>
+      <div className="container">
+        <div className="row justify-content-end">
+          <div className="col-lg-9">
+            <Recommendations />
+          </div>
+        </div>
+      </div>
+    </React.Fragment>
   )
 }
 
-function mapStateToProps(state) {
-  return { token: state.token };
-}
-
-export default connect(mapStateToProps)(Home);
+export default Home;

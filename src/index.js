@@ -14,15 +14,15 @@ import Confirm from './components/Confirm';
 
 ReactDOM.render(
   <Provider store={store}>
-    <Application>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Application>
         <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/oauth/:provider" component={OAuthCallback} />
         <Route path="/register" component={Register} />
         <Route path="/confirm/:verificationToken" component={Confirm} />
-      </BrowserRouter>
-    </Application>
+      </Application>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );

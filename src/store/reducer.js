@@ -13,14 +13,14 @@ import {
   RegisterFailure,
   RegisterRequest,
   RegisterSuccess,
-  FetchMessagesSuccess, 
+  FetchMessagesSuccess,
   FetchMessagesRequest,
   FetchMessagesFailure,
   FetchMeRequest,
   FetchMeSuccess,
   FetchMeFailure,
 } from './actions';
-import {WebsocketConnected, WebsocketDisconnected, NewMessage} from '../components/Chat';
+import {WebsocketConnected, WebsocketDisconnected, NewMessage} from '../components/old_chat';
 
 const token = localStorage.getItem('token') || null;
 

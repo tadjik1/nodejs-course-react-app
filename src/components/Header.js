@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 function Header() {
   return (
@@ -16,20 +17,14 @@ function Header() {
                     data-toggle="modal" data-target="#xsMenuModal">
               <img src="assets/icons/icon-menu.svg" alt="menu icon" />
             </button>
-            <a className="navbar-brand" href="#"><strong>AnyShop</strong></a>
+            <Link className="navbar-brand" to="/"><strong>AnyShop</strong></Link>
           </div>
-          <a href="#" className="mobile-search-menu-icon">
+          <Link to="/" className="mobile-search-menu-icon">
             <img src="assets/icons/icon-search.svg" alt="menu icon" />
-          </a>
+          </Link>
         
           <div className="collapse navbar-collapse" id="navbarsExample07">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-                <a className="nav-link" href="#">Sales <span className="sr-only">(current)</span></a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Gift Cards</a>
-              </li>
               <li className="nav-item">
                 <form className="form-inline my-2 my-md-0 ml-lg-5">
                   <input className="form-control mr-sm-2" type="text" placeholder="Search"
