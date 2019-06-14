@@ -105,7 +105,6 @@ class HomeCarousel extends Component {
                 next={this.next}
                 previous={this.previous}
                 className="main-carousel"
-                ride={false}
             >
                 <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
                 {slides}

@@ -584,8 +584,26 @@ form button[type="submit"]:not(.btn-send) {
   opacity: .9;
 }
 
-.homepage-cards .card {
+.row.homepage-cards .card {
   height: 100%;
+}
+
+.card-deck.homepage-cards .card {
+  margin-bottom: 1.5rem;
+}
+
+@media all and (min-width: 576px) and (max-width: 992px) {
+  .card-deck.homepage-cards .card {
+    flex: 1 0 calc(50% - 30px);
+    max-width: calc(50% - 30px);
+  }
+}
+
+@media all and (min-width: 993px) {
+  .card-deck.homepage-cards .card {
+    flex: 1 0 calc(33.3333% - 30px);
+    max-width: calc(33.3333% - 30px);
+  }
 }
 
 .homepage-cards .card-img-wrap {

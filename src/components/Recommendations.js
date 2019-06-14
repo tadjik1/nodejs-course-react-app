@@ -1,30 +1,74 @@
 import React from 'react';
+import { CardDeck } from 'reactstrap';
+
+import CardExample from './Card';
 
 function Recommendations() {
   return (
     <React.Fragment>
       <h3 className="section-title">Top Recommendations for You</h3>
+      <CardDeck className="homepage-cards">
+        <CardExample
+          cardTitle="Card product title"
+          cardImgSrc="assets/images/headset.png"
+          cardRate={true}
+          cardRateAmount="121"
+          cardPrice="129.92"
+          cardOldPrice="250"
+          discount={true}
+        />
+        <CardExample
+          cardTitle="Homido Virtual Reality Headset for Smartphone"
+          cardImgSrc="assets/images/headset.png"
+          cardRate={true}
+          cardRateAmount="121"
+          cardPrice="129.92"
+          cardOldPrice="250"
+        />
+        <CardExample
+          cardTitle="Victrola Pro USB Bluetooth Turntable Vinyl to MP3 Function"
+          cardImgSrc="assets/images/headset.png"
+          cardRate={true}
+          cardRateAmount="121"
+          cardPrice="129.92"
+          cardOldPrice="250"
+        />
+        <CardExample
+          cardTitle="Card product title"
+          cardImgSrc="assets/images/headset.png"
+          cardRate={true}
+          cardRateAmount="121"
+          cardPrice="129.92"
+          cardOldPrice="250"
+          discount={true}
+        />
+        <CardExample
+          cardTitle="Homido Virtual Reality Headset for Smartphone"
+          cardImgSrc="assets/images/headset.png"
+          cardRate={true}
+          cardRateAmount="121"
+          cardPrice="129.92"
+          cardOldPrice="250"
+        />
+        <CardExample
+          cardTitle="Victrola Pro USB Bluetooth Turntable Vinyl to MP3 Function"
+          cardImgSrc="assets/images/headset.png"
+          cardRate={true}
+          cardRateAmount="121"
+          cardPrice="129.92"
+          cardOldPrice="250"
+        />
+      </CardDeck>
       <div className="row homepage-cards">
         <div className="col-md-6 col-lg-4 mb-4">
-          <div className="card">
-            <div className="card-img-wrap">
-              <img className="card-img-top" src="assets/images/headphones.png"
-                   alt="Card image cap" />
-            </div>
-            <div className="card-body">
-              <h5 className="card-title">Nuraphone - Wireless Bluetooth Over-Ear
-                Headphones</h5>
-              <div className="rate">
-                <i className="icon-star checked"></i>
-                <i className="icon-star checked"></i>
-                <i className="icon-star checked"></i>
-                <i className="icon-star checked"></i>
-                <i className="icon-star active"></i>
-                <span className="rate-amount ml-2">24</span>
-              </div>
-              <p className="card-text price-text"><strong>€ 399</strong></p>
-            </div>
-          </div>
+            <CardExample
+              cardTitle="Card product title"
+              cardImgSrc="assets/images/headset.png"
+              cardRate={true}
+              cardRateAmount="121"
+              cardPrice="129.92"
+              cardOldPrice="250"
+            />
         </div>
         <div className="col-md-6 col-lg-4 mb-4">
           <div className="card">
@@ -43,7 +87,8 @@ function Recommendations() {
                 <i className="icon-star checked"></i>
                 <span className="rate-amount ml-2">121</span>
               </div>
-              <p className="card-text price-text"><strong>€ 47.31</strong></p>
+              <p className="card-text price-text"><strong>€ 129.92</strong>
+                  <small className="ml-2">€ 250</small></p>
             </div>
           </div>
         </div>
