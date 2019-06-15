@@ -1,17 +1,17 @@
 import React from 'react';
 
-import HomeMenu from './HomeMenu';
+import ListGroupMenu from './ListGroupMenu';
 import HomeCarousel from './HomeCarousel';
 import Recommendations from './Recommendations';
 
 function Home() {
   return (
     <React.Fragment>
-      <div className="backdrop"></div>
+      <div className="backdrop" />
       <div className="container">
         <div className="row flex-column-reverse flex-lg-row">
           <div className="col-lg-3">
-            <HomeMenu />
+            <ListGroupMenu />
           </div>
           <div className="col-lg-9">
             <HomeCarousel />
