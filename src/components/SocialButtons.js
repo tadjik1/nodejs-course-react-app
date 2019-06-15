@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { oauth } from '../store/actions';
+import { oauth } from '../store/modules/auth/actions';
 
 function SocialButtons({ oauth, oauthAction }) {
   function getOAuthLink(provider) {

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import { oauthCallback } from '../store/actions';
+import { oauthCallback } from '../store/modules/auth/actions';
 
 const providerMap = {
   vkontakte: 'VK',
