@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Card, CardTitle, CardText, CardImg, CardBody } from 'reactstrap';
 import cx from 'classnames';
 
-const CardExample = ({cardTitle, cardImgSrc, cardRate, cardRateAmount, cardPrice, cardOldPrice, discount}) => (
+const CardComponent = ({cardTitle, cardImgSrc, cardRate, cardRateAmount, cardPrice, cardOldPrice, discount}) => (
     <Card>
         <div className="card-img-wrap">
             <CardImg width="100%" className="card-img-top" src={ cardImgSrc } alt="Card image cap" />
@@ -30,7 +30,7 @@ const CardExample = ({cardTitle, cardImgSrc, cardRate, cardRateAmount, cardPrice
     </Card>
 );
 
-CardExample.propTypes = {
+CardComponent.propTypes = {
     cardTitle: PropTypes.string,
     cardImgSrc: PropTypes.string,
     cardRate: PropTypes.bool,
@@ -40,4 +40,4 @@ CardExample.propTypes = {
     discount: PropTypes.bool
 };
 
-export default CardExample;
+export default CardComponent;
