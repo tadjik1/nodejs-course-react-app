@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 
 import Form from './Form';
-import { login } from '../store/actions';
+import { login } from '../store/modules/auth/actions';
 
 const fields = [
   {type: 'email', name: 'email', placeholder: 'email', icon: 'fa-at'},

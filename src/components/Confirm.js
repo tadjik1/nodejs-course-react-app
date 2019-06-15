@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import { confirm } from '../store/actions';
+import { confirm } from '../store/modules/auth/actions';
 
 function Confirm({token, confirmation, confirmAction, match}) {
   if (token) return <Redirect to="/" />;
