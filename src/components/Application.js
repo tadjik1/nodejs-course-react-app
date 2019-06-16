@@ -1,15 +1,17 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 import Header from './Header';
 import Footer from './Footer';
 import Chat from './Chat';
 
-function Application({children}) {
+function Application({token, children}) {
   return (
     <React.Fragment>
       <Header />
       <main role="main">
-        <Chat />
+        {!!token && <Chat />}
         {children}
       </main>
       <Footer />
@@ -33,16 +35,14 @@ function Application({children}) {
               </button>
             </div>
             <div className="modal-menu">
-              <a href="#" className="modal-menu__item">Sales</a>
-              <a href="#" className="modal-menu__item">Gift Cards</a>
-              <a href="#" className="modal-menu__item">Login</a>
-              <a href="#" className="modal-menu__item">Register</a>
+              <Link to="/login" className="modal-menu__item">Вход</Link>
+              <Link to="/register" className="modal-menu__item">Регистрация</Link>
               <a href="#"
                  className="modal-menu__item"
                  data-toggle="modal"
                  data-target="#chatModal">Have a question? <img src="assets/icons/icon-chat.svg"
                                                                 alt="" /></a>
-              <h3 className="h6 mb-0 modal-menu__title">Product categories</h3>
+              <h3 className="h6 mb-0 modal-menu__title">Категории товаров</h3>
               <a
                 href="#"
                 className="modal-menu__item is-submenu"
@@ -171,4 +171,8 @@ function Application({children}) {
   );
 }
 
-export default Application;
+function mapStateToProps(state) {
+  return { token: state.auth.token };
+}
+
+export default connect(mapStateToProps)(Application);

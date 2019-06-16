@@ -1,7 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
-function Header() {
+function Header({token}) {
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -27,17 +28,19 @@ function Header() {
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
                 <form className="form-inline my-2 my-md-0 ml-lg-5">
-                  <input className="form-control mr-sm-2" type="text" placeholder="Search"
+                  <input className="form-control mr-sm-2" type="text" placeholder="Поиск"
                          aria-label="Search" />
-                  <button type="submit" className="btn btn-outline-primary">Search</button>
+                  <button type="submit" className="btn btn-outline-primary">Поиск</button>
                 </form>
               </li>
             </ul>
-            <div>
-              <a href="login.html" className="text-muted">Login</a>
-              |
-              <a href="#" className="text-muted">Register</a>
-            </div>
+            {!token &&
+              <div>
+                <Link to="/login" className="text-muted">Вход</Link>
+                {' | '}
+                <Link to="/register" className="text-muted">Регистрация</Link>
+              </div>
+            }
           </div>
         </div>
       </nav>
@@ -45,4 +48,8 @@ function Header() {
   );
 }
 
-export default Header;
+function mapStateToProps(state) {
+  return { token: state.auth.token };
+}
+
+export default connect(mapStateToProps)(Header);

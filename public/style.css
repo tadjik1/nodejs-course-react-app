@@ -85,6 +85,10 @@ body.no-scroll {
   margin-bottom: .5rem;
 }
 
+.footer-menu-separator {
+  padding: 0 5px;
+}
+
 .mobile-search-menu-icon {
   display: inline-flex;
 }

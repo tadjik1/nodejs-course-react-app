@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SocialButtons from './SocialButtons';
+import {Link} from "react-router-dom";
 
 export default function Form(props) {
   const [state, changeState] = useState({});
@@ -12,59 +13,56 @@ export default function Form(props) {
   }
   
   return (
-    <main className="container">
-      <div className="row justify-content-center align-items-center">
-        <div className="col col-md-6">
-          <form
-            onSubmit={(event) => props.onSubmit(event, state)}
-            className="text-center border border-light p-5"
-            noValidate>
-            
-            <p className="h4 mb-4">{props.title}</p>
-            
-            {props.error && <p className="text-left text-danger">{props.error}</p>}
-  
-            {props.fields.map(field => {
-              let inputClassname = "form-control";
-              if (props.errors) {
-                if (props.errors[field.name]) {
-                  inputClassname += " is-invalid";
-                } else {
-                  inputClassname += " is-valid";
-                }
-              }
-    
-              return (
-                <div className="form-row mb-4" key={field.name} >
-                  <input
-                    value={state[field.name] || ""}
-                    onChange={setValue}
-                    type={field.type}
-                    name={field.name}
-                    required
-                    className={inputClassname}
-                    disabled={props.disabled}
-                    placeholder={field.placeholder} />
-                  {(props.errors && props.errors[field.name]) && (
-                    <div className="invalid-feedback text-left">
-                      {props.errors[field.name]}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-
-            <button
-              disabled={props.disabled}
-              className="btn btn-info btn-block my-4"
-              type="submit">{props.button}</button>
-
-            <props.Footer />
+    <div className="container pt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <form onSubmit={(event) => props.onSubmit(event, state)}>
+            {!!props.error &&
+            <div className="alert alert-danger" role="alert">
+              {props.error}
+            </div>
+            }
+            <div className="jumbotron jumbotron-light jumbotron-form">
+              
+              {props.fields.map(field => {
+                return (
+                  <div className="form-group" key={field.id}>
+                    <label htmlFor={field.id}>{field.label}</label>
+                    <input type={field.type} className="form-control" id={field.id}
+                           placeholder={field.placeholder}
+                           value={state[field.name] || ""} onChange={setValue} required />
+                  </div>
+                );
+              })}
+              
+              <button disabled={props.disabled} type="submit" className="btn btn-primary btn-lg">
+                {props.submitButton}
+              </button>
+              
+              <div className="form-footer mt-4">
+                <props.Footer />
+              </div>
+            </div>
           </form>
-
-          <SocialButtons />
+          <div
+            className="h4 text-center font-weight-normal text-uppercase my-5 d-none d-lg-block">или
+          </div>
+          <div className="socials mb-5">
+            <a href="#" className="btn btn-primary btn-social -fb">
+              <img src="assets/icons/icon-facebook.svg" alt="" />
+              Facebook
+            </a>
+            <a href="#" className="btn btn-primary btn-social -vk">
+              <img src="assets/icons/icon-vk.svg" alt="" />
+              Vkontakte
+            </a>
+            <a href="#" className="btn btn-primary btn-social -twitter">
+              <img src="assets/icons/icon-twitter.svg" alt="" />
+              Twitter
+            </a>
+          </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

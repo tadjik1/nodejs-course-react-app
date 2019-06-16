@@ -6,26 +6,25 @@ import Form from './Form';
 import { register } from '../store/modules/auth/actions';
 
 const fields = [
-  {type: 'email', name: 'email', placeholder: 'email', icon: 'fa-at'},
-  {type: 'text', name: 'displayName', placeholder: 'имя', icon: 'fa-user'},
-  {type: 'password', name: 'password', placeholder: 'пароль', icon: 'fa-key'},
+  {label: 'Email', type: 'email', id: 'email', name: 'email', placeholder: 'Email'},
+  {label: 'Имя', type: 'text', id: 'displayName', name: 'displayName', placeholder: 'Имя'},
+  {label: 'Пароль', type: 'password', id: 'password', name: 'password', placeholder: 'Пароль'},
 ];
 
 function Register({registration, registerAction}) {
-  if (registration.complete) {
+  if (true || registration.complete) {
     return (
-      <main className="container">
-        <div className="row login-form justify-content-center align-items-center">
-          <div className="col col-md-6">
-            <div className="text-center border border-light p-5">
-              <p className="h4 mb-4">Поздравляем, вы зарегистрированы!</p>
-              
-              <p>На указанную вами почту отправлено письмо.</p>
-              <p>Для завершения регистрации, пожалуйста, перейдите по ссылке из этого письма.</p>
-            </div>
+      <div className="container pt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <div className="text-center border border-light p-5">
+            <p className="h4 mb-4">Поздравляем, вы зарегистрированы!</p>
+            <p>На указанную вами почту отправлено письмо.</p>
+            <p>Для завершения регистрации, пожалуйста, перейдите по ссылке из этого письма.</p>
           </div>
         </div>
-      </main>
+      </div>
+    </div>
     );
   }
   
@@ -44,7 +43,7 @@ function Register({registration, registerAction}) {
       errors={registration.errors}
       onSubmit={onSubmit}
       fields={fields}
-      button="Создать аккаунт"
+      submitButton="Создать аккаунт"
       Footer={() => (
         <p>Уже есть аккаунт?&nbsp;
           <Link to="/login">Вход</Link>
@@ -54,7 +53,7 @@ function Register({registration, registerAction}) {
 }
 
 function mapStateToProps(state) {
-  return { registration: state.registration };
+  return { registration: state.auth.registration };
 }
 
 const mapDispatchToProps = { registerAction: register };

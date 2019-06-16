@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-
 import Form from './Form';
+
 import { login } from '../store/modules/auth/actions';
 
 const fields = [
-  {type: 'email', name: 'email', placeholder: 'email', icon: 'fa-at'},
-  {type: 'password', name: 'password', placeholder: 'пароль', icon: 'fa-key'},
+  {label: 'Email', type: 'email', id: 'email', name: 'email', placeholder: 'Email'},
+  {label: 'Пароль', type: 'password', id: 'password', name: 'password', placeholder: 'Пароль'},
 ];
 
 function Login({token, login, loginAction}) {
@@ -24,21 +24,21 @@ function Login({token, login, loginAction}) {
     <Form
       disabled={login.processing}
       title="Вход"
-      validated={login.errors}
       error={login.error}
       onSubmit={onSubmit}
       fields={fields}
-      button="Войти"
+      submitButton="Войти"
       Footer={() => (
-        <p>Еще нет аккаунта?&nbsp;
-          <Link to="/register">Регистрация</Link>
-        </p>
-      )} />
+        <React.Fragment>
+          Нет аккаунта? <Link to="/register">Регистрация</Link>
+        </React.Fragment>
+      )}
+    />
   );
 }
 
 function mapStateToProps(state) {
-  return { login: state.login, token: state.token };
+  return { login: state.auth.login, token: state.auth.token };
 }
 
 const mapDispatchToProps = { loginAction: login };
