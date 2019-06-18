@@ -11,9 +11,10 @@ const Modal = ({title, content, openModalButtonContent, isBackBtn, isCloseBtn, .
 
   return (
     <>
+      {/* TODO: move openModalBtn outside, handlers too */}
       <span className="d-flex" onClick={handleToggleModal}>
-                {openModalButtonContent}
-            </span>
+        {openModalButtonContent}
+      </span>
       <ReactstrapModal
         title={title}
         isOpen={isOpen}
