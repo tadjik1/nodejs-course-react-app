@@ -7,21 +7,21 @@ import Recommendations from './Recommendations';
 function Home() {
   return (
     <React.Fragment>
-      <div className="backdrop" />
+      <div className="backdrop"/>
       <div className="container">
         <div className="row flex-column-reverse flex-lg-row">
           <div className="col-lg-3">
-            <ListGroupMenu />
+            <ListGroupMenu/>
           </div>
           <div className="col-lg-9">
-            <HomeCarousel />
+            <HomeCarousel/>
           </div>
         </div>
       </div>
       <div className="container">
         <div className="row justify-content-end">
           <div className="col-lg-9">
-            <Recommendations />
+            <Recommendations/>
           </div>
         </div>
       </div>
