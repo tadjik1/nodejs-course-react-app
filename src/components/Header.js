@@ -1,11 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import Modal from './Modal';
+import Modal from './Modal/Modal';
 import ModalMenu from './ModalMenu';
 import {Button} from 'reactstrap';
+import useModal from '../store/modules/helpers/useModal';
 
 function Header({token}) {
+  const {isOpen, handleToggleModal} = useModal();
+
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -21,14 +24,13 @@ function Header({token}) {
               title="Menu"
               content={<ModalMenu/>}
               id="xsMenuModal"
-              isNoPadding
               isCloseBtn
-              openModalButtonContent={
-                <Button color="link" className="navbar-toggler d-inline-flex d-md-none has-messages">
-                  <img src="assets/icons/icon-menu.svg" alt="menu icon"/>
-                </Button>
-              }
+              isOpen={isOpen}
+              handleToggleModal={handleToggleModal}
             />
+            <Button color="link" className="navbar-toggler d-inline-flex d-md-none has-messages" onClick={handleToggleModal}>
+              <img src="assets/icons/icon-menu.svg" alt="menu icon"/>
+            </Button>
             <Link className="navbar-brand" to="/"><strong>AnyShop</strong></Link>
           </div>
           <Link to="/" className="mobile-search-menu-icon">
