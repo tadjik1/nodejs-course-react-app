@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Modal from './Modal/Modal';
-import ModalMenu from './ModalMenu';
+import ModalMenu from './ModalMenu/ModalMenu';
 import {Button} from 'reactstrap';
 import useModal from '../store/modules/helpers/useModal';
 
