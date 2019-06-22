@@ -17,7 +17,7 @@ const ListGroupMenuDropdown = ({dropdownTitle, dropdownItems}) => {
             </DropdownToggle>
             <DropdownMenu>
                 { dropdownItems.map((item) => (
-                  <Link to={`/categories/${item.id}`}>
+                  <Link to={`/category/${item.id}`}>
                     <DropdownItem key={item.id}>
                       {item.title}
                     </DropdownItem>

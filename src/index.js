@@ -22,7 +22,7 @@ ReactDOM.render(
         <Route path="/oauth/:provider" component={OAuthCallback} />
         <Route path="/register" component={Register} />
         <Route path="/confirm/:verificationToken" component={Confirm} />
-        <Route path="/categories/:category" component={Category} />
+        <Route path="/category/:category" component={Category} />
       </Application>
     </BrowserRouter>
   </Provider>,

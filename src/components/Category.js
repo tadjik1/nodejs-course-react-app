@@ -9,7 +9,7 @@ function Category({ categories, products, fetchCategories, fetchProductsByCatego
   useEffect(() => {
     fetchCategories();
     fetchProductsByCategory(match.params.category);
-  }, []);
+  }, [match.params.category]);
   
   if (!categories.length || !products.length) {
     return <Loader />;
