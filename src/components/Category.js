@@ -1,6 +1,7 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import {Collapse} from 'reactstrap';
 import {fetchCategories} from '../store/modules/categories/actions';
 import {fetchProductsByCategory} from '../store/modules/products/actions';
 import Loader from './Loader';
@@ -11,35 +12,39 @@ function Category({ categories, products, fetchCategories, fetchProductsByCatego
     fetchProductsByCategory(match.params.category);
   }, [match.params.category]);
   
+  const [selectedCategoryId, selectCategoryId] = useState(null);
+  const [selectedSubcategory, setSelectedSubcategory] = useState(null);
+  
+  useEffect(() => {
+    if (!categories.length) return;
+    
+    for (const category of categories) {
+      const subcategory = category.subcategories.find(({id}) => id === match.params.category);
+      if (!subcategory) continue;
+  
+      selectCategoryId(category.id);
+      setSelectedSubcategory(subcategory);
+      
+      break;
+    }
+  }, [categories.length]);
+  
   if (!categories.length || !products.length) {
     return <Loader />;
   }
-  
-  const [selectedCategory, selectedSubcategory] = categories.reduce((res, category) => {
-    if (res.length !== 0) return res;
-    
-    const subcategory = category.subcategories.find(({id}) => id === match.params.category);
-    if (!!subcategory) {
-      return [category, subcategory];
-    }
-    
-    return res;
-  }, []);
   
   return (
     <div className="container">
       <div className="row">
         <div className="d-none d-lg-block col-lg-4 col-xl-3">
           <div id="accordion" className="aside-accordion-menu list-group">
-            {categories.map((category, index) => {
+            {categories.map((category) => {
               return (
                 <div className="list-group-item" key={category.id}>
-                  <h5 className="mb-0" id={index} data-toggle="collapse" data-target={`#${category.id}`}
-                      aria-expanded="true" aria-controls={category.id}>
+                  <h5 className="mb-0" onClick={() => selectCategoryId(category.id)}>
                     {category.title} <img src="assets/icons/icon-angle.svg" alt="angle-right" />
                   </h5>
-                  <div id={category.id} className="collapse show" aria-labelledby={index}
-                       data-parent="#accordion">
+                  <Collapse isOpen={selectedCategoryId === category.id}>
                     <ul>
                       {category.subcategories.map(subcategory => {
                         return (
@@ -49,7 +54,7 @@ function Category({ categories, products, fetchCategories, fetchProductsByCatego
                         );
                       })}
                     </ul>
-                  </div>
+                  </Collapse>
                 </div>
               );
             })}
