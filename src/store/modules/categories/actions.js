@@ -1,10 +1,14 @@
 import {
   FetchCategoriesRequest, FetchCategoriesSuccess, FetchCategoriesFailure
 } from './constants';
-import client from "../../../network";
+import client from '../../../network';
 
 export function fetchCategories() {
   return (dispatch, getState) => {
+    const state = getState();
+    
+    if (state.categories.length !== 0) return;
+    
     dispatch({type: FetchCategoriesRequest});
     
     client.get('/api/categories')

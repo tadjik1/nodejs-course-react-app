@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-export default axios.create();
+export default axios.create({
+  baseURL: 'http://localhost:3001',
+});
 
 /*
 * if (error.response.status === 401) {

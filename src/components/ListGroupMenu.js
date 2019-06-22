@@ -22,24 +22,18 @@ const dropdownList = [
     'Video Projectors'
 ];
 
-const ListGroupMenu = () => {
-
+const ListGroupMenu = ({ categories }) => {
     return (
         <div>
             <div className="backdrop"></div>
             <ListGroup className="sidebar">
-                <ListGroupItem>
-                    <ListGroupMenuDropdown dropdownTitle="Camera & Photo" dropdownItems={dropdownList} />
-                </ListGroupItem>
-                <ListGroupItem>
-                    <ListGroupMenuDropdown dropdownTitle="Home Cinema, TV & Video" dropdownItems={dropdownList} />
-                </ListGroupItem>
-                <ListGroupItem>
-                    <ListGroupMenuDropdown dropdownTitle="Mobile Phones" dropdownItems={dropdownList} />
-                </ListGroupItem>
-                <ListGroupItem>
-                    <ListGroupMenuDropdown dropdownTitle="Computers & Components" dropdownItems={dropdownList} />
-                </ListGroupItem>
+                {categories.map(category => {
+                    return (
+                      <ListGroupItem key={category.id}>
+                          <ListGroupMenuDropdown dropdownTitle={category.title} dropdownItems={category.subcategories} />
+                      </ListGroupItem>
+                    );
+                })}
             </ListGroup>
         </div>
     )
