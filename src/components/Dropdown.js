@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import {Link} from 'react-router-dom';
 
 const ListGroupMenuDropdown = ({dropdownTitle, dropdownItems}) => {
     const [isOpen, setToggleState] = useState(false);
@@ -15,7 +16,13 @@ const ListGroupMenuDropdown = ({dropdownTitle, dropdownItems}) => {
                 { dropdownTitle }
             </DropdownToggle>
             <DropdownMenu>
-                { dropdownItems.map((item) => (<DropdownItem key={item.id}>{item.title}</DropdownItem>)) }
+                { dropdownItems.map((item) => (
+                  <Link to={`/categories/${item.id}`}>
+                    <DropdownItem key={item.id}>
+                      {item.title}
+                    </DropdownItem>
+                  </Link>
+                )) }
             </DropdownMenu>
         </Dropdown>
     )

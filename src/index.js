@@ -11,6 +11,7 @@ import Login from './components/Login';
 import OAuthCallback from './components/OAuthCallback';
 import Register from './components/Register';
 import Confirm from './components/Confirm';
+import Category from './components/Category';
 
 ReactDOM.render(
   <Provider store={store}>
@@ -21,6 +22,7 @@ ReactDOM.render(
         <Route path="/oauth/:provider" component={OAuthCallback} />
         <Route path="/register" component={Register} />
         <Route path="/confirm/:verificationToken" component={Confirm} />
+        <Route path="/categories/:category" component={Category} />
       </Application>
     </BrowserRouter>
   </Provider>,
