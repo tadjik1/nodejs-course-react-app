@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import {ChatMobile} from '../ModalChat';
+import Chat from '../Chat/Chat';
 import ModalContextMenu from '../ModalContextMenu';
 import ModalAsItem from "./ModalAsItem";
 
@@ -30,7 +30,7 @@ const productCategories = [
   {
     title: "Have a question?",
     modalName: "question",
-    modalComponent: <ChatMobile />,
+    modalComponent: <Chat />,
     isChat: true
   },
   {

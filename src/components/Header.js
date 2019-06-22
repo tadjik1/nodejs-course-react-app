@@ -1,25 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Modal from './Modal/Modal';
 import ModalMenu from './ModalMenu/ModalMenu';
-import {Button} from 'reactstrap';
+import { Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  Form,
+  Input,
+  Button } from 'reactstrap';
 import useModal from '../store/modules/helpers/useModal';
 
 function Header({token}) {
   const {isOpen, handleToggleModal} = useModal();
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+
+  function handleToggleHeaderMenu() {
+    setIsOpenMenu(!isOpenMenu);
+  }
 
   return (
     <header>
-      <nav className="navbar navbar-expand-lg navbar-light">
+      <Navbar light expand="lg">
         <div className="container">
           <div>
-            <button className="navbar-toggler d-none d-md-inline-flex d-lg-none" type="button"
-                    data-toggle="collapse" data-target="#navbarsExample07"
-                    aria-controls="navbarsExample07" aria-expanded="false"
-                    aria-label="Toggle navigation">
+            <NavbarToggler onClick={handleToggleHeaderMenu} className="d-none d-md-inline-flex d-lg-none">
               <img src="assets/icons/icon-menu.svg" alt="menu icon"/>
-            </button>
+            </NavbarToggler>
             <Modal
               title="Menu"
               content={<ModalMenu/>}
@@ -28,25 +38,24 @@ function Header({token}) {
               isOpen={isOpen}
               handleToggleModal={handleToggleModal}
             />
-            <Button color="link" className="navbar-toggler d-inline-flex d-md-none has-messages" onClick={handleToggleModal}>
+            <NavbarToggler onClick={handleToggleModal} className="d-inline-flex d-md-none has-messages">
               <img src="assets/icons/icon-menu.svg" alt="menu icon"/>
-            </Button>
-            <Link className="navbar-brand" to="/"><strong>AnyShop</strong></Link>
+            </NavbarToggler>
+            <NavbarBrand href="/"><strong>AnyShop</strong></NavbarBrand>
           </div>
           <Link to="/" className="mobile-search-menu-icon">
             <img src="assets/icons/icon-search.svg" alt="menu icon"/>
           </Link>
 
-          <div className="collapse navbar-collapse" id="navbarsExample07">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <form className="form-inline my-2 my-md-0 ml-lg-5">
-                  <input className="form-control mr-sm-2" type="text" placeholder="Поиск"
-                         aria-label="Search"/>
-                  <button type="submit" className="btn btn-outline-primary">Поиск</button>
-                </form>
-              </li>
-            </ul>
+          <Collapse isOpen={isOpenMenu} navbar>
+            <Nav className="mr-auto" navbar>
+              <NavItem>
+                <Form inline className="my-2 my-md-0 ml-lg-5">
+                  <Input className="form-control mr-sm-2" type="text" placeholder="Поиск" aria-label="Search"/>
+                  <Button type="submit" color="primary" outline>Поиск</Button>
+                </Form>
+              </NavItem>
+            </Nav>
             {!token &&
             <div>
               <Link to="/login" className="text-muted">Вход</Link>
@@ -54,9 +63,9 @@ function Header({token}) {
               <Link to="/register" className="text-muted">Регистрация</Link>
             </div>
             }
-          </div>
+          </Collapse>
         </div>
-      </nav>
+      </Navbar>
     </header>
   );
 }
