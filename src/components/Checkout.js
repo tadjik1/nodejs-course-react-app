@@ -41,21 +41,21 @@ function Checkout() {
               <div className="row">
                 <div className="col-md-6">
                   <FormGroup>
-                    <Label htmlFor="exampleInput">Name:</Label>
+                    <Label for="exampleInput">Name:</Label>
                     <Input type="text" className="form-control" id="exampleInput" placeholder="Some name"/>
                   </FormGroup>
                   <FormGroup className="mb-4">
-                    <Label htmlFor="exampleInput2">Email:</Label>
+                    <Label for="exampleInput2">Email:</Label>
                     <input type="email" className="form-control" id="exampleInput2" placeholder="email@gmail.com"/>
                   </FormGroup>
                 </div>
                 <div className="col-md-6">
                   <FormGroup>
-                    <Label htmlFor="exampleInput3">Phone:</Label>
+                    <Label for="exampleInput3">Phone:</Label>
                     <input type="text" className="form-control" id="exampleInput3" placeholder="+44 7911 123456"/>
                   </FormGroup>
                   <FormGroup className="mb-4">
-                    <Label htmlFor="exampleInput4">Address:</Label>
+                    <Label for="exampleInput4">Address:</Label>
                     <Input type="text" className="form-control" id="exampleInput4"
                            placeholder="Westminster, London SW1A 0AA, UK"/>
                   </FormGroup>
