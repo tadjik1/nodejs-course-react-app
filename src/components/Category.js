@@ -12,11 +12,9 @@ function Category({ categories, products, fetchCategories, fetchProductsByCatego
   }, [match.params.category]);
   
   const [selectedCategoryId, selectCategoryId] = useState(null);
-  const [selectedSubcategory, setSelectedSubcategory] = useState(null);
+  const [selectedSubcategory, setSelectedSubcategory] = useState({});
   
   useEffect(() => {
-    if (!categories.length) return;
-    
     for (const category of categories) {
       const subcategory = category.subcategories.find(({id}) => id === match.params.category);
       if (!subcategory) continue;
@@ -27,7 +25,7 @@ function Category({ categories, products, fetchCategories, fetchProductsByCatego
       break;
     }
   }, [categories.length]);
-  
+
   if (!categories.length || !products.length) {
     return <Loader />;
   }

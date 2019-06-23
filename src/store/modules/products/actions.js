@@ -44,7 +44,7 @@ export function fetchProductsByQuery(query) {
   return (dispatch, getState) => {
     const state = getState();
     
-    if (get(state, `products.byQuery[${query}].fetching`)) return;
+    if (get(state, `products.byQuery[${query}].fetching`) === false) return;
     
     dispatch({type: FetchProductsByQueryRequest, query});
     
