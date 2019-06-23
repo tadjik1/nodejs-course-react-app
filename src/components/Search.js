@@ -1,44 +1,32 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {fetchCategories} from '../store/modules/categories/actions';
-import {fetchProductsByCategory} from '../store/modules/products/actions';
+import {fetchProductsByQuery} from '../store/modules/products/actions';
 import Loader from './Loader';
 import CategoriesSideBar from './CategoriesSideBar';
+import queryString from 'query-string';
 
-function Category({ categories, products, fetchCategories, fetchProductsByCategory, match }) {
+function Category({ categories, products, fetchCategories, fetchProductsByQuery, location }) {
+  const values = queryString.parse(location.search);
+  
   useEffect(() => {
     fetchCategories();
-    fetchProductsByCategory(match.params.category);
-  }, [match.params.category]);
+    fetchProductsByQuery(values.query);
+  }, [values.query]);
   
-  const [selectedCategoryId, selectCategoryId] = useState(null);
-  const [selectedSubcategory, setSelectedSubcategory] = useState(null);
-  
-  useEffect(() => {
-    if (!categories.length) return;
-    
-    for (const category of categories) {
-      const subcategory = category.subcategories.find(({id}) => id === match.params.category);
-      if (!subcategory) continue;
-  
-      selectCategoryId(category.id);
-      setSelectedSubcategory(subcategory);
-      
-      break;
-    }
-  }, [categories.length]);
-  
-  if (!categories.length || !products.length) {
+  if (!categories.length || !products.products) {
     return <Loader />;
   }
   
   return (
     <div className="container">
       <div className="row">
-        <CategoriesSideBar categories={categories} category={selectedCategoryId} />
+        <CategoriesSideBar categories={categories} />
         <div className="col-lg-8 col-xl-9">
-          <h3 className="h5 mt-4 mt-md-0 pt-1 mb-4">{selectedSubcategory.title}</h3>
-          {products.map(product => {
+          {products.products.length === 0 &&
+            <h4 className="col-title mb-2">{`По запросу ${values.query} ничего найти не удалось`}</h4>
+          }
+          {products.products.map(product => {
             return (
               <div className="product-list-box" key={product.id}>
                 <div className="box-inner-col description-col">
@@ -76,13 +64,14 @@ function Category({ categories, products, fetchCategories, fetchProductsByCatego
 }
 
 function mapStateToProps(state, props) {
+  const values = queryString.parse(props.location.search);
   return {
     categories: state.categories,
-    products: state.products.byCategory[props.match.params.category] || []
+    products: state.products.byQuery[values.query] || {}
   };
 }
 
-const mapDispatchToProps = { fetchCategories, fetchProductsByCategory };
+const mapDispatchToProps = { fetchCategories, fetchProductsByQuery };
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);

@@ -12,6 +12,7 @@ import OAuthCallback from './components/OAuthCallback';
 import Register from './components/Register';
 import Confirm from './components/Confirm';
 import Category from './components/Category';
+import Search from './components/Search';
 
 ReactDOM.render(
   <Provider store={store}>
@@ -23,6 +24,7 @@ ReactDOM.render(
         <Route path="/register" component={Register} />
         <Route path="/confirm/:verificationToken" component={Confirm} />
         <Route path="/category/:category" component={Category} />
+        <Route path="/search" component={Search} />
       </Application>
     </BrowserRouter>
   </Provider>,

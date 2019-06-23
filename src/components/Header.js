@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Modal from './Modal/Modal';
 import ModalMenu from './ModalMenu/ModalMenu';
+import { withRouter } from 'react-router';
+import queryString from 'query-string';
 import { Collapse,
   Navbar,
   NavbarToggler,
@@ -14,12 +16,19 @@ import { Collapse,
   Button } from 'reactstrap';
 import useModal from '../store/modules/helpers/useModal';
 
-function Header({token}) {
+function Header({token, history, location}) {
+  const values = queryString.parse(location.search);
   const {isOpen, handleToggleModal} = useModal();
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [query, setQuery] = useState(values.query || '');
 
   function handleToggleHeaderMenu() {
     setIsOpenMenu(!isOpenMenu);
+  }
+  
+  function search(event) {
+    event.preventDefault();
+    history.push(`/search?query=${query}`);
   }
 
   return (
@@ -50,8 +59,15 @@ function Header({token}) {
           <Collapse isOpen={isOpenMenu} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
-                <Form inline className="my-2 my-md-0 ml-lg-5">
-                  <Input className="form-control mr-sm-2" type="text" placeholder="Поиск" aria-label="Search"/>
+                <Form onSubmit={search} inline className="my-2 my-md-0 ml-lg-5">
+                  <Input
+                    className="form-control mr-sm-2"
+                    type="text"
+                    placeholder="Поиск"
+                    aria-label="Search"
+                    value={query}
+                    onChange={event => setQuery(event.target.value)}
+                  />
                   <Button type="submit" color="primary" outline>Поиск</Button>
                 </Form>
               </NavItem>
@@ -74,4 +90,4 @@ function mapStateToProps(state) {
   return {token: state.auth.token};
 }
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));
