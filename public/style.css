@@ -837,6 +837,10 @@ form button[type="submit"]:not(.btn-send) {
   justify-content: center;
 }
 
+.description-col .product-img img {
+  max-width: 80px;
+}
+
 .description-col .product-desc {
   padding: 1.5rem 1.5rem 1.5rem .25rem;
 }
