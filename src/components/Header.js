@@ -8,7 +8,6 @@ import queryString from 'query-string';
 import { Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
   Form,
