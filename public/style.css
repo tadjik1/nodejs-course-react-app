@@ -839,6 +839,7 @@ form button[type="submit"]:not(.btn-send) {
 
 .description-col .product-img img {
   max-width: 80px;
+  max-height: 80px;
 }
 
 .description-col .product-desc {
@@ -903,16 +904,17 @@ form button[type="submit"]:not(.btn-send) {
   height: 48px;
   margin-right: .5rem;
   margin-left: 0;
-  background: #FFFFFF;
   border: 1px solid #979797;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #FFFFFF;
 }
 
 .product-carousel .carousel-indicators li img {
   width: auto;
   max-width: 94%;
+  max-height: 94%;
 }
 
 .product-carousel .carousel-indicators {
@@ -957,6 +959,7 @@ form button[type="submit"]:not(.btn-send) {
   opacity: 0.4;
   top: 50%;
   transform: translate(0, -50%);
+  cursor: pointer;
 }
 
 .product-carousel .carousel-control-prev {
@@ -1026,6 +1029,10 @@ form button[type="submit"]:not(.btn-send) {
 
 .product-info .nav.nav-tabs {
   position: relative;
+}
+
+.product-info .nav.nav-tabs a:hover, .product-info .nav.nav-tabs a:focus, .product-info .nav.nav-tabs a:active {
+  outline: none;
 }
 
 @media all and (max-width: 576px) {

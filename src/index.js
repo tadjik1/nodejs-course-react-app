@@ -13,6 +13,7 @@ import Register from './components/Register';
 import Confirm from './components/Confirm';
 import Category from './components/Category';
 import Search from './components/Search';
+import Product from './components/Product/Product';
 
 ReactDOM.render(
   <Provider store={store}>
@@ -25,6 +26,7 @@ ReactDOM.render(
         <Route path="/confirm/:verificationToken" component={Confirm} />
         <Route path="/category/:category" component={Category} />
         <Route path="/search" component={Search} />
+        <Route path="/product" component={Product} />
       </Application>
     </BrowserRouter>
   </Provider>,
