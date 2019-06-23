@@ -10,6 +10,7 @@ import { Collapse,
   NavbarToggler,
   Nav,
   NavItem,
+  NavbarBrand,
   Form,
   Input,
   Button } from 'reactstrap';
@@ -54,7 +55,7 @@ function Header({token, history, location}) {
             <NavbarToggler onClick={handleToggleModal} className="d-inline-flex d-md-none has-messages">
               <img src="assets/icons/icon-menu.svg" alt="menu icon"/>
             </NavbarToggler>
-            <NavbarBrand to="/"><strong>AnyShop</strong></NavbarBrand>
+            <NavbarBrand><Link to="/"><strong>AnyShop</strong></Link></NavbarBrand>
           </div>
           <Link to="/" className="mobile-search-menu-icon">
             <img src="assets/icons/icon-search.svg" alt="menu icon"/>
