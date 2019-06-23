@@ -14,6 +14,7 @@ import Confirm from './components/Confirm';
 import Category from './components/Category';
 import Search from './components/Search';
 import Product from './components/Product/Product';
+import Checkout from './components/Checkout';
 
 ReactDOM.render(
   <Provider store={store}>
@@ -27,6 +28,7 @@ ReactDOM.render(
         <Route path="/category/:category" component={Category} />
         <Route path="/search" component={Search} />
         <Route path="/product" component={Product} />
+        <Route path="/checkout" component={Checkout} />
       </Application>
     </BrowserRouter>
   </Provider>,

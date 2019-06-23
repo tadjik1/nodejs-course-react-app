@@ -10,7 +10,7 @@ const ProductTabs = () => {
       <Nav tabs>
         <NavItem>
           <NavLink
-            tabindex="0"
+            tabIndex="0"
             className={cx({ active: activeTab === '1' })}
             onClick={() => { setActiveTab('1'); }}
           >
@@ -19,7 +19,7 @@ const ProductTabs = () => {
         </NavItem>
         <NavItem>
           <NavLink
-            tabindex="0"
+            tabIndex="0"
             className={cx({ active: activeTab === '2' })}
             onClick={() => { setActiveTab('2'); }}
           >
@@ -28,7 +28,7 @@ const ProductTabs = () => {
         </NavItem>
         <NavItem>
           <NavLink
-            tabindex="0"
+            tabIndex="0"
             className={cx({ active: activeTab === '3' })}
             onClick={() => { setActiveTab('3'); }}
           >
