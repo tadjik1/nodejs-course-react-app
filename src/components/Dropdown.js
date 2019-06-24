@@ -17,11 +17,11 @@ const ListGroupMenuDropdown = ({dropdownTitle, dropdownItems}) => {
             </DropdownToggle>
             <DropdownMenu>
                 { dropdownItems.map((item) => (
-                  <Link key={item.id} to={`/category/${item.id}`}>
-                    <DropdownItem>
+                  <DropdownItem>
+                    <Link key={item.id} to={`/category/${item.id}`}>
                       {item.title}
-                    </DropdownItem>
-                  </Link>
+                    </Link>
+                  </DropdownItem>
                 )) }
             </DropdownMenu>
         </Dropdown>

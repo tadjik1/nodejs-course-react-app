@@ -394,6 +394,17 @@ form button[type="submit"]:not(.btn-send) {
   border-bottom-right-radius: 0;
 }
 
+.list-group-item .dropdown .dropdown-item a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.list-group-item .dropdown .dropdown-item a:hover, .list-group-item .dropdown .dropdown-item a:focus, .list-group-item .dropdown .dropdown-item a:active,
+.list-group-item .dropdown .dropdown-item:focus, .list-group-item .dropdown .dropdown-item:active {
+  background-color: initial;
+  color: initial;
+}
+
 .sidebar {
   position: relative;
   z-index: 100;
