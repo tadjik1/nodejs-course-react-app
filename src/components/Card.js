@@ -4,7 +4,7 @@ import {Card, CardTitle, CardText, CardImg, CardBody} from 'reactstrap';
 import cx from 'classnames';
 
 const CardComponent = ({cardTitle, cardImgSrc, cardRate, cardRateAmount, cardPrice, cardOldPrice, discount}) => (
-  <Card>
+  <Card tag="a" href="/">
     <div className="card-img-wrap">
       <CardImg width="100%" className="card-img-top" src={cardImgSrc} alt="Card image cap"/>
     </div>

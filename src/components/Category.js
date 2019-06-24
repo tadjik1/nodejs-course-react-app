@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchCategories} from '../store/modules/categories/actions';
 import {fetchProductsByCategory} from '../store/modules/products/actions';
@@ -40,11 +41,11 @@ function Category({ categories, products, fetchCategories, fetchProductsByCatego
             return (
               <div className="product-list-box" key={product.id}>
                 <div className="box-inner-col description-col">
-                  <div className="product-img">
+                  <Link to="/" className="product-img">
                     <img src={product.images[0]} alt="img" />
-                  </div>
+                  </Link>
                   <div className="product-desc">
-                    <h4 className="col-title mb-2">{product.title}</h4>
+                    <h4 className="col-title mb-2"><Link to="/">{product.title}</Link></h4>
                     <div className="rate">
                       <i className="icon-star checked"></i>
                       <i className="icon-star checked"></i>
