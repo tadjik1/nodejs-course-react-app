@@ -7,6 +7,8 @@ import CategoriesSideBar from './CategoriesSideBar';
 import queryString from 'query-string';
 import {Link} from "react-router-dom";
 
+const formatter = new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' });
+
 function Category({ categories, products, fetchCategories, fetchProductsByQuery, location }) {
   const values = queryString.parse(location.search);
   
@@ -36,17 +38,9 @@ function Category({ categories, products, fetchCategories, fetchProductsByQuery,
                   </Link>
                   <div className="product-desc">
                     <h4 className="col-title mb-2"><Link to={`/product/${product.id}`}>{product.title}</Link></h4>
-                    <div className="rate">
-                      <i className="icon-star checked"></i>
-                      <i className="icon-star checked"></i>
-                      <i className="icon-star checked"></i>
-                      <i className="icon-star checked"></i>
-                      <i className="icon-star checked"></i>
-                      <span className="rate-amount ml-2 d-inline-block d-md-none">121</span>
-                    </div>
-                    <p className="rate-amount d-none d-md-block mt-1">11 reviews</p>
-                    <p className="price-text mb-0 mt-2 d-inline-block d-md-none"><strong>€
-                      47.31</strong></p>
+                    <p className="price-text mb-0 mt-2 d-inline-block d-md-none">
+                      <strong>{formatter.format(product.price)}</strong>
+                    </p>
                   </div>
                 </div>
                 <div className="box-inner-col price-col">

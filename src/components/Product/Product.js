@@ -6,6 +6,8 @@ import Loader from '../Loader';
 import ProductCarousel from './ProductCarousel';
 import ProductTabs from './ProductTabs';
 
+const formatter = new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' });
+
 function Product({ product, fetchProductById, match }) {
   useEffect(() => {
     fetchProductById(match.params.id);
@@ -54,7 +56,7 @@ function Product({ product, fetchProductById, match }) {
                   An easy-to-use camera that works hand-in-hand with smart devices and delivers superb quality whatever
                   you’re shooting.
                 </p>
-                <h4 className="col-title price-text discount mb-2 mt-0">€ 359 <small className="ml-2">€ 395</small></h4>
+                <h4 className="col-title price-text discount mb-2 mt-0">{formatter.format(product.product.price)}</h4>
                 <Link to="#" className="btn btn-primary btn-lg">Buy now</Link>
                 <p className="p-notice mb-0 text-success">Min. 2 year guarantee included Extensive range of genuine
                   Canon products Eligible for free delivery</p>

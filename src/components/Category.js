@@ -6,6 +6,8 @@ import {fetchProductsByCategory} from '../store/modules/products/actions';
 import Loader from './Loader';
 import CategoriesSideBar from './CategoriesSideBar';
 
+const formatter = new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' });
+
 function Category({ categories, products, fetchCategories, fetchProductsByCategory, match }) {
   useEffect(() => {
     fetchCategories();
@@ -55,12 +57,13 @@ function Category({ categories, products, fetchCategories, fetchProductsByCatego
                       <span className="rate-amount ml-2 d-inline-block d-md-none">121</span>
                     </div>
                     <p className="rate-amount d-none d-md-block mt-1">11 reviews</p>
-                    <p className="price-text mb-0 mt-2 d-inline-block d-md-none"><strong>€
-                      47.31</strong></p>
+                    <p className="price-text mb-0 mt-2 d-inline-block d-md-none">
+                      <strong>{formatter.format(product.price)}</strong>
+                    </p>
                   </div>
                 </div>
                 <div className="box-inner-col price-col">
-                  <h4 className="col-title price-text mb-2">€ 491</h4>
+                  <h4 className="col-title price-text mb-2">{formatter.format(product.price)}</h4>
                   <div>
                     <button type="button" className="btn btn-outline-primary">Add to basket</button>
                   </div>

@@ -13,7 +13,7 @@ const CardComponent = ({url, cardTitle, cardImgSrc, cardRate, cardRateAmount, ca
       <CardTitle>{cardTitle}</CardTitle>
       <div className="flex-grow"></div>
       <CardText className={cx("price-text")}>
-        ₽ {cardPrice}
+        {cardPrice}
       </CardText>
     </CardBody>
   </Card>

@@ -3,6 +3,8 @@ import { CardDeck } from 'reactstrap';
 
 import CardExample from './Card';
 
+const formatter = new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' });
+
 function Recommendations({ items }) {
   return (
     <React.Fragment>
@@ -17,7 +19,7 @@ function Recommendations({ items }) {
               cardImgSrc={item.images[0]}
               cardRate={true}
               cardRateAmount="121"
-              cardPrice={item.price}
+              cardPrice={formatter.format(item.price)}
               cardOldPrice="250"
               discount={true}
             />
