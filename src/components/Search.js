@@ -5,6 +5,7 @@ import {fetchProductsByQuery} from '../store/modules/products/actions';
 import Loader from './Loader';
 import CategoriesSideBar from './CategoriesSideBar';
 import queryString from 'query-string';
+import {Link} from "react-router-dom";
 
 function Category({ categories, products, fetchCategories, fetchProductsByQuery, location }) {
   const values = queryString.parse(location.search);
@@ -30,11 +31,11 @@ function Category({ categories, products, fetchCategories, fetchProductsByQuery,
             return (
               <div className="product-list-box" key={product.id}>
                 <div className="box-inner-col description-col">
-                  <div className="product-img">
+                  <Link to={`/product/${product.id}`} className="product-img">
                     <img src={product.images[0]} alt="img" />
-                  </div>
+                  </Link>
                   <div className="product-desc">
-                    <h4 className="col-title mb-2">{product.title}</h4>
+                    <h4 className="col-title mb-2"><Link to={`/product/${product.id}`}>{product.title}</Link></h4>
                     <div className="rate">
                       <i className="icon-star checked"></i>
                       <i className="icon-star checked"></i>
