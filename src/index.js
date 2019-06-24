@@ -27,7 +27,7 @@ ReactDOM.render(
         <Route path="/confirm/:verificationToken" component={Confirm} />
         <Route path="/category/:category" component={Category} />
         <Route path="/search" component={Search} />
-        <Route path="/product" component={Product} />
+        <Route path="/product/:id" component={Product} />
         <Route path="/checkout" component={Checkout} />
       </Application>
     </BrowserRouter>

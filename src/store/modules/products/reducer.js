@@ -3,12 +3,15 @@ import {
   FetchProductsByCategorySuccess,
   FetchProductsByQueryRequest,
   FetchProductsByQuerySuccess,
+  FetchProductByIdRequest,
+  FetchProductByIdSuccess,
 } from './constants';
 
 const initialState = {
   recommendations: [],
   byCategory: {},
   byQuery: {},
+  byId: {}
 };
 
 export default function reducer(state = initialState, action) {
@@ -42,6 +45,28 @@ export default function reducer(state = initialState, action) {
           [action.query]: {
             fetching: false,
             products: action.products,
+          }
+        }
+      };
+    case FetchProductByIdRequest:
+      return {
+        ...state,
+        byId: {
+          ...state.byId,
+          [action.id]: {
+            fetching: true,
+            product: null
+          }
+        }
+      };
+    case FetchProductByIdSuccess:
+      return {
+        ...state,
+        byId: {
+          ...state.byId,
+          [action.id]: {
+            fetching: false,
+            product: action.product
           }
         }
       };

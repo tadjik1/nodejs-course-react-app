@@ -9,3 +9,7 @@ export const FetchProductsByCategoryFailure = Symbol('FetchProductsByCategoryFai
 export const FetchProductsByQueryRequest = Symbol('FetchProductsByQueryRequest');
 export const FetchProductsByQuerySuccess = Symbol('FetchProductsByQuerySuccess');
 export const FetchProductsByQueryFailure = Symbol('FetchProductsByQueryFailure');
+
+export const FetchProductByIdRequest = Symbol('FetchProductByIdRequest');
+export const FetchProductByIdSuccess = Symbol('FetchProductByIdSuccess');
+export const FetchProductByIdFailure = Symbol('FetchProductByIdFailure');

@@ -12,11 +12,12 @@ function Recommendations({ items }) {
           return (
             <CardExample
               key={item.id}
+              url={`/product/${item.id}`}
               cardTitle={item.title}
               cardImgSrc={item.images[0]}
               cardRate={true}
               cardRateAmount="121"
-              cardPrice="129.92"
+              cardPrice={item.price}
               cardOldPrice="250"
               discount={true}
             />

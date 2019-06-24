@@ -2,6 +2,7 @@ import {
   FetchRecommendationsRequest, FetchRecommendationsSuccess, FetchRecommendationsFailure,
   FetchProductsByCategoryRequest, FetchProductsByCategorySuccess, FetchProductsByCategoryFailure,
   FetchProductsByQueryRequest, FetchProductsByQuerySuccess, FetchProductsByQueryFailure,
+  FetchProductByIdRequest, FetchProductByIdSuccess, FetchProductByIdFailure,
 } from './constants';
 import client from '../../../network';
 import get from 'lodash/get';
@@ -53,6 +54,23 @@ export function fetchProductsByQuery(query) {
         dispatch({type: FetchProductsByQuerySuccess, query, products: response.data.products});
       }).catch(error => {
       dispatch({type: FetchProductsByQueryFailure, query, error: error.response.data.error});
+    });
+  }
+}
+
+export function fetchProductById(id) {
+  return (dispatch, getState) => {
+    const state = getState();
+    
+    if (get(state, `products.byId[${id}].fetching`) === false) return;
+    
+    dispatch({type: FetchProductByIdRequest, id});
+    
+    client.get(`/api/products/${id}`)
+      .then(response => {
+        dispatch({type: FetchProductByIdSuccess, id, product: response.data.product});
+      }).catch(error => {
+      dispatch({type: FetchProductByIdFailure, id, error: error.response.data.error});
     });
   }
 }
