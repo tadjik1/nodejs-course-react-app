@@ -41,11 +41,11 @@ function Category({ categories, products, fetchCategories, fetchProductsByCatego
             return (
               <div className="product-list-box" key={product.id}>
                 <div className="box-inner-col description-col">
-                  <Link to="/" className="product-img">
+                  <Link to={`/product/${product.id}`} className="product-img">
                     <img src={product.images[0]} alt="img" />
                   </Link>
                   <div className="product-desc">
-                    <h4 className="col-title mb-2"><Link to="/">{product.title}</Link></h4>
+                    <h4 className="col-title mb-2"><Link to={`/product/${product.id}`}>{product.title}</Link></h4>
                     <div className="rate">
                       <i className="icon-star checked"></i>
                       <i className="icon-star checked"></i>
