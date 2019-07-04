@@ -8,7 +8,7 @@ const formatter = new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 
 function Recommendations({ items }) {
   return (
     <React.Fragment>
-      <h3 className="section-title">Top Recommendations for You</h3>
+      <h3 className="section-title">Лучшие рекоммендации для вас</h3>
       <CardDeck className="homepage-cards">
         {items.map(item => {
           return (

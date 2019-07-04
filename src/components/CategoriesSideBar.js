@@ -12,7 +12,7 @@ export default function CategoriesSideBar({category, categories}) {
           return (
             <div className="list-group-item" key={category.id}>
               <h5 className="mb-0" onClick={() => selectCategoryId(category.id)}>
-                {category.title} <img src="assets/icons/icon-angle.svg" alt="angle-right" />
+                {category.title} <img src="/assets/icons/icon-angle.svg" alt="angle-right" />
               </h5>
               <Collapse isOpen={selectedCategoryId === category.id}>
                 <ul>

@@ -10,30 +10,30 @@ import {
 const items = [
     {
         id: '0',
-        src: 'assets/images/default-slide-img.jpg',
+        src: '/assets/images/default-slide-img.jpg',
         altText: 'Slide 1',
         captionTitle: 'BEST LAPTOP DEALS',
         captionBtnText: 'View all DEALS',
         captionBtnLink: '#',
-        captionBtnIconSrc: 'assets/icons/icon-angle-white.svg'
+        captionBtnIconSrc: '/assets/icons/icon-angle-white.svg'
     },
     {
         id: '1',
-        src: 'assets/images/default-slide-img.jpg',
+        src: '/assets/images/default-slide-img.jpg',
         altText: 'Slide 2',
         captionTitle: 'BEST LAPTOP DEALS',
         captionBtnText: 'View all DEALS',
         captionBtnLink: '#',
-        captionBtnIconSrc: 'assets/icons/icon-angle-white.svg'
+        captionBtnIconSrc: '/assets/icons/icon-angle-white.svg'
     },
     {
         id: '2',
-        src: 'assets/images/default-slide-img.jpg',
+        src: '/assets/images/default-slide-img.jpg',
         altText: 'Slide 3',
         captionTitle: 'BEST LAPTOP DEALS',
         captionBtnText: 'View all DEALS',
         captionBtnLink: '#',
-        captionBtnIconSrc: 'assets/icons/icon-angle-white.svg'
+        captionBtnIconSrc: '/assets/icons/icon-angle-white.svg'
     }
 ];
 

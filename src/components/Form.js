@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import SocialButtons from './SocialButtons';
-import {Link} from "react-router-dom";
 
 export default function Form(props) {
   const [state, changeState] = useState({});
@@ -30,6 +28,7 @@ export default function Form(props) {
                     <label htmlFor={field.id}>{field.label}</label>
                     <input type={field.type} className="form-control" id={field.id}
                            placeholder={field.placeholder}
+                           name={field.name}
                            value={state[field.name] || ""} onChange={setValue} required />
                   </div>
                 );
@@ -49,15 +48,15 @@ export default function Form(props) {
           </div>
           <div className="socials mb-5">
             <a href="#" className="btn btn-primary btn-social -fb">
-              <img src="assets/icons/icon-facebook.svg" alt="" />
+              <img src="/assets/icons/icon-facebook.svg" alt="" />
               Facebook
             </a>
             <a href="#" className="btn btn-primary btn-social -vk">
-              <img src="assets/icons/icon-vk.svg" alt="" />
+              <img src="/assets/icons/icon-vk.svg" alt="" />
               Vkontakte
             </a>
             <a href="#" className="btn btn-primary btn-social -twitter">
-              <img src="assets/icons/icon-twitter.svg" alt="" />
+              <img src="/assets/icons/icon-twitter.svg" alt="" />
               Twitter
             </a>
           </div>

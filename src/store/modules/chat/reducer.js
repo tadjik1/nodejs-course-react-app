@@ -1,43 +1,20 @@
 import {
-  FetchMessagesRequest, FetchMessagesSuccess, FetchMessagesFailure,
+  FetchMessagesSuccess,
   WebsocketConnected, WebsocketDisconnected,
   Message,
 } from './constants';
 
 const initialState = {
   isWebsocketConnected: false,
-  messages: {
-    fetching: false,
-    list: []
-  },
+  messages: [],
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case FetchMessagesRequest:
-      return {
-        ...state,
-        messages: {
-          ...state.messages,
-          fetching: true
-        }
-      };
     case FetchMessagesSuccess:
       return {
         ...state,
-        messages: {
-          ...state.messages,
-          list: action.messages.concat(state.messages.list),
-          fetching: false
-        }
-      };
-    case FetchMessagesFailure:
-      return {
-        ...state,
-        messages: {
-          ...state.messages,
-          fetching: false,
-        }
+        messages: action.messages.concat(state.messages),
       };
     case WebsocketConnected:
       return { ...state, isWebsocketConnected: true };
@@ -46,11 +23,7 @@ export default function reducer(state = initialState, action) {
     case Message:
       return {
         ...state,
-        messages: {
-          ...state.messages,
-          list: state.messages.list.concat(action.message),
-          fetching: false
-        }
+        messages: state.messages.concat(action.message),
       };
     default:
       return state;

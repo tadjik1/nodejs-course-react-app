@@ -17,4 +17,6 @@ export const OAuthCallbackRequest = Symbol('OAuthCallbackRequest');
 export const OAuthCallbackFailure = Symbol('OAuthCallbackFailure');
 export const OAuthCallbackSuccess = Symbol('OAuthCallbackSuccess');
 
-
+export const FetchMeRequest = Symbol('FetchMeRequest');
+export const FetchMeSuccess = Symbol('FetchMeSuccess');
+export const FetchMeFailure = Symbol('FetchMeFailure');

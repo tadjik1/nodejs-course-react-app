@@ -9,7 +9,7 @@ const ModalBtnBack = ({handleToggleModal}) => (
     onClick={handleToggleModal}
     aria-label="close"
   >
-    <img src="assets/icons/icon-close.svg" alt="close"/>
+    <img src="/assets/icons/icon-close.svg" alt="close"/>
   </Button>
 );
 

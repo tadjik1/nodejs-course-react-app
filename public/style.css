@@ -259,7 +259,7 @@ form button[type="submit"]:not(.btn-send) {
   font-weight: 700;
   line-height: 24px;
   text-align: center;
-  color: #D9534F;
+  /*color: #D9534F;*/
   position: relative;
   border-bottom: 1px solid #DDDDDD;
   white-space: nowrap;
@@ -851,6 +851,7 @@ a.card {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 112px;
 }
 
 .description-col .product-img img {

@@ -9,7 +9,7 @@ export function fetchMessages() {
     dispatch({type: FetchMessagesRequest});
     
     const state = getState();
-    const token = state.token;
+    const token = state.auth.token;
     
     client.get('/api/messages', {
       headers: {

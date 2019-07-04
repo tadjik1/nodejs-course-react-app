@@ -3,7 +3,7 @@ import {
   RegisterRequest, RegisterSuccess, RegisterFailure,
   ConfirmRequest, ConfirmSuccess, ConfirmFailure,
   OAuthRequest, OAuthFailure,
-  OAuthCallbackRequest, OAuthCallbackSuccess, OAuthCallbackFailure,
+  OAuthCallbackRequest, OAuthCallbackSuccess, OAuthCallbackFailure, FetchMeRequest, FetchMeSuccess,
 } from './constants';
 
 const token = localStorage.getItem('token') || null;
@@ -31,6 +31,10 @@ const initialState = {
     error: null,
     processing: false,
   },
+  me: {
+    fetching: false,
+    profile: null,
+  }
 };
 
 export default function reducer(state = initialState, action) {
@@ -102,6 +106,10 @@ export default function reducer(state = initialState, action) {
     case OAuthCallbackSuccess:
       localStorage.setItem('token', action.token);
       return {...state, oauthCallback: initialState.oauthCallback, token: action.token};
+    case FetchMeRequest:
+      return {...state, me: { ...initialState.me, fetching: true }};
+    case FetchMeSuccess:
+      return {...state, me: { ...initialState.me, profile: action.me }};
     default:
       return state;
   }

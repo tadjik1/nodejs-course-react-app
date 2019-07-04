@@ -6,6 +6,7 @@ import {
   ConfirmRequest, ConfirmSuccess, ConfirmFailure,
   OAuthRequest, OAuthFailure,
   OAuthCallbackRequest, OAuthCallbackSuccess, OAuthCallbackFailure,
+  FetchMeRequest, FetchMeSuccess, FetchMeFailure,
 } from './constants';
 
 export function login({email, password}) {
@@ -76,6 +77,28 @@ export function oauthCallback({provider, code}) {
       dispatch({type: OAuthCallbackSuccess, token: response.data.token});
     }).catch(error => {
       dispatch({type: OAuthCallbackFailure, error: error.response.data.error});
+    });
+  }
+}
+
+export function fetchMe() {
+  return (dispatch, getState) => {
+    const state = getState();
+    
+    if (state.auth.me.fetching || !!state.auth.me.profile) return;
+    
+    dispatch({type: FetchMeRequest});
+    
+    const token = state.auth.token;
+    
+    client.get('/api/me', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(response => {
+      dispatch({type: FetchMeSuccess, me: response.data.me});
+    }).catch(error => {
+      dispatch({type: FetchMeFailure, error: error.response.data.error});
     });
   }
 }

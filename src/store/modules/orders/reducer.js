@@ -7,7 +7,7 @@ const initialState = {
   },
 };
 
-export default function reducer(state = {}, action) {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case CheckoutRequest:
       return {

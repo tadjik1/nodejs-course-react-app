@@ -5,54 +5,6 @@ import Chat from '../Chat/Chat';
 import ModalContextMenu from '../ModalContextMenu';
 import ModalAsItem from "./ModalAsItem";
 
-// Mock example context menu data of 1st item
-const passedContextMenuData = [
-  {
-    title: "Title 1",
-    src: "/"
-  },
-  {
-    title: "Title 2",
-    src: "/"
-  },
-  {
-    title: "Title 3",
-    src: "/"
-  },
-  {
-    title: "Title 4",
-    src: "/"
-  }
-];
-
-// Mock categories
-const productCategories = [
-  {
-    title: "Have a question?",
-    modalName: "question",
-    modalComponent: <Chat />,
-    isChat: true
-  },
-  {
-    title: "Home Cinema, TV & Video",
-    modalName: "ChatMobile",
-    modalComponent: <ModalContextMenu data={passedContextMenuData} />,
-    isChat: false
-  },
-  {
-    title: "Mobile Phones",
-    modalName: "mobiles",
-    modalComponent: <ModalContextMenu data={passedContextMenuData} />,
-    isChat: false
-  },
-  {
-    title: "Computers & Components",
-    modalName: "computers",
-    modalComponent: <ModalContextMenu data={passedContextMenuData} />,
-    isChat: false
-  }
-];
-
 // Create a Context
 const OpeningModalContext = React.createContext();
 
@@ -63,16 +15,32 @@ const ModalProvider = ({item}) => (
   </OpeningModalContext.Provider>
 );
 
-const ModalMenu = () => (
+const ModalMenu = ({token, categories}) => (
   <div className="modal-menu">
-    <Link to="#" className="modal-menu__item">Sales</Link>
-    <Link to="#" className="modal-menu__item">Gift Cards</Link>
-    <Link to="#" className="modal-menu__item">Login</Link>
-    <Link to="#" className="modal-menu__item">Register</Link>
-    <h3 className="h6 mb-0 modal-menu__title">Product categories</h3>
-    {productCategories && productCategories.map((item, key) => (
-      <ModalProvider key={key} item={item} />
-    ))}
+    <Link to="/login" className="modal-menu__item">Вход</Link>
+    <Link to="/register" className="modal-menu__item">Регистрация</Link>
+    {!!token &&
+      <ModalProvider item={{
+        title: "Есть вопрос?",
+        modalComponent: <Chat />,
+        isChat: true,
+      }} />
+    }
+    <h3 className="h6 mb-0 modal-menu__title">Категории</h3>
+    {categories.map(category => {
+      const item = {
+        title: category.title,
+        modalComponent: <ModalContextMenu data={category.subcategories.map(subcategory => ({
+          title: subcategory.title,
+          src: `/category/${subcategory.id}`
+        }))} />,
+        isChat: false
+      };
+      
+      return (
+        <ModalProvider key={category.id} item={item} />
+      );
+    })}
   </div>
 );
 

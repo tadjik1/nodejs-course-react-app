@@ -5,18 +5,18 @@ import Modal from './Modal/Modal';
 import ModalMenu from './ModalMenu/ModalMenu';
 import { withRouter } from 'react-router';
 import queryString from 'query-string';
+import {fetchCategories} from '../store/modules/categories/actions';
 import { Collapse,
   Navbar,
   NavbarToggler,
   Nav,
   NavItem,
-  NavbarBrand,
   Form,
   Input,
   Button } from 'reactstrap';
 import useModal from '../store/modules/helpers/useModal';
 
-function Header({token, history, location}) {
+function Header({token, categories, fetchCategories, history, location}) {
   const values = queryString.parse(location.search);
   const {isOpen, handleToggleModal} = useModal();
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -26,6 +26,15 @@ function Header({token, history, location}) {
     if (query !== values.query)
       setQuery(values.query || '');
   }, [location.search]);
+  
+  useEffect(() => {
+    console.log(location.pathname);
+    if (isOpen) handleToggleModal();
+  }, [location.pathname]);
+  
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   function handleToggleHeaderMenu() {
     setIsOpenMenu(!isOpenMenu);
@@ -35,6 +44,12 @@ function Header({token, history, location}) {
     event.preventDefault();
     history.push(`/search?query=${query}`);
   }
+  
+  function logout(e) {
+    e.preventDefault();
+    localStorage.removeItem('token');
+    window.location.href = "/";
+  }
 
   return (
     <header>
@@ -42,23 +57,23 @@ function Header({token, history, location}) {
         <div className="container">
           <div>
             <NavbarToggler onClick={handleToggleHeaderMenu} className="d-none d-md-inline-flex d-lg-none">
-              <img src="assets/icons/icon-menu.svg" alt="menu icon"/>
+              <img src="/assets/icons/icon-menu.svg" alt="menu icon"/>
             </NavbarToggler>
             <Modal
-              title="Menu"
-              content={<ModalMenu/>}
+              title="Меню"
+              content={<ModalMenu token={token} categories={categories} />}
               id="xsMenuModal"
               isCloseBtn
               isOpen={isOpen}
               handleToggleModal={handleToggleModal}
             />
             <NavbarToggler onClick={handleToggleModal} className="d-inline-flex d-md-none has-messages">
-              <img src="assets/icons/icon-menu.svg" alt="menu icon"/>
+              <img src="/assets/icons/icon-menu.svg" alt="menu icon"/>
             </NavbarToggler>
             <Link to="/" className="navbar-brand"><strong>AnyShop</strong></Link>
           </div>
           <Link to="/" className="mobile-search-menu-icon">
-            <img src="assets/icons/icon-search.svg" alt="menu icon"/>
+            <img src="/assets/icons/icon-search.svg" alt="menu icon"/>
           </Link>
 
           <Collapse isOpen={isOpenMenu} navbar>
@@ -84,6 +99,9 @@ function Header({token, history, location}) {
               <Link to="/register" className="text-muted">Регистрация</Link>
             </div>
             }
+            {!!token &&
+              <a onClick={logout} href="#" className="text-muted">Выйти</a>
+            }
           </Collapse>
         </div>
       </Navbar>
@@ -92,7 +110,12 @@ function Header({token, history, location}) {
 }
 
 function mapStateToProps(state) {
-  return {token: state.auth.token};
+  return {
+    token: state.auth.token,
+    categories: state.categories,
+  };
 }
 
-export default withRouter(connect(mapStateToProps)(Header));
+const mapDispatchToProps = { fetchCategories };
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

@@ -28,7 +28,7 @@ ReactDOM.render(
         <Route path="/category/:category" component={Category} />
         <Route path="/search" component={Search} />
         <Route path="/product/:id" component={Product} />
-        <Route path="/checkout" component={Checkout} />
+        <Route path="/checkout/:id" component={Checkout} />
       </Application>
     </BrowserRouter>
   </Provider>,
