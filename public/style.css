@@ -463,6 +463,7 @@ form button[type="submit"]:not(.btn-send) {
 .sidebar .list-group-item {
   position: relative;
   padding: 0;
+  cursor: pointer;
 }
 
 .sidebar .list-group-item > a {
@@ -643,6 +644,7 @@ form button[type="submit"]:not(.btn-send) {
   max-width: 100%;
   max-height: 100%;
   width: auto;
+  mix-blend-mode: darken;
 }
 
 .homepage-cards .card .flex-grow {
@@ -740,7 +742,9 @@ a.card {
   .homepage-cards .card-img-top {
     margin: auto;
     display: block;
-    width: 100%;
+    width: 96px;
+    height: 96px;
+    object-fit: contain;
   }
 
   .homepage-cards .card-img-wrap {
@@ -851,12 +855,13 @@ a.card {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 112px;
+  max-width: 112px;
 }
 
 .description-col .product-img img {
   max-width: 80px;
   max-height: 80px;
+  mix-blend-mode: darken;
 }
 
 .description-col .product-desc {
@@ -972,6 +977,7 @@ a.card {
 
 .product-carousel .carousel-item .img-wrap img {
   max-width: 300px;
+  mix-blend-mode: darken;
 }
 
 .product-carousel .carousel-control-prev, .product-carousel .carousel-control-next {

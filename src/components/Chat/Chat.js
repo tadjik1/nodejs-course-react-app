@@ -7,26 +7,32 @@ import ChatInner from './ChatInner';
 import io from 'socket.io-client';
 import {bindActionCreators} from 'redux';
 import {WebsocketConnected, WebsocketDisconnected, Message} from '../../store/modules/chat/constants';
-import {fetchMessages} from '../../store/modules/chat/actions';
+import {fetchMessages, sendMessage} from '../../store/modules/chat/actions';
+import {fetchMe} from '../../store/modules/auth/actions';
 
 let socket = null;
 
-function Chat({token, isWebsocketConnected, messages, isCollapsed, isFixed, dispatch, fetchMessages}) {
+function Chat(props) {
+  const {
+    token, isWebsocketConnected, messages, me, isCollapsed, isFixed,
+    dispatch, fetchMessages, sendMessage, fetchMe,
+  } = props;
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
+    fetchMe();
     fetchMessages();
-    
-    socket = io(`http://localhost:3001?token=${token}`);
-    
+
+    socket = io(`?token=${token}`);
+
     socket.on('connect', () => {
       dispatch({type: WebsocketConnected});
     });
-    
+
     socket.on('disconnect', () => {
       dispatch({type: WebsocketDisconnected});
     });
-    
+
     socket.on('message', message => {
       dispatch({type: Message, message});
     });
@@ -35,10 +41,18 @@ function Chat({token, isWebsocketConnected, messages, isCollapsed, isFixed, disp
   function handleToggleCollapse() {
     setIsOpen(!isOpen);
   }
-  
-  function sendMessage(msg) {
+
+  function _sendMessage(msg) {
     socket.emit('message', msg);
+    sendMessage({
+      text: msg,
+      user: me.profile.displayName,
+      date: Date.now(),
+      id: Date.now(),
+    });
   }
+
+  if (me.fetching || !me.profile) return null;
 
   return (
     <div className={cx("chat", {"fixed": isFixed})}>
@@ -50,9 +64,15 @@ function Chat({token, isWebsocketConnected, messages, isCollapsed, isFixed, disp
       )}
       {isCollapsed
         ? <Collapse isOpen={isOpen}>
-          <ChatInner isWebsocketConnected={isWebsocketConnected} sendMessage={sendMessage} messages={messages} />
+          <ChatInner
+            isWebsocketConnected={isWebsocketConnected}
+            sendMessage={_sendMessage}
+            messages={messages} />
         </Collapse>
-        : <ChatInner isWebsocketConnected={isWebsocketConnected} sendMessage={sendMessage} messages={messages} />
+        : <ChatInner
+          isWebsocketConnected={isWebsocketConnected}
+          sendMessage={_sendMessage}
+          messages={messages} />
       }
     </div>
   );
@@ -66,6 +86,7 @@ Chat.propTypes = {
 function mapStateToProps(state) {
   return {
     token: state.auth.token,
+    me: state.auth.me,
     isWebsocketConnected: state.chat.isWebsocketConnected,
     messages: state.chat.messages,
   };
@@ -75,7 +96,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    ...bindActionCreators({fetchMessages}, dispatch)
+    ...bindActionCreators({fetchMessages, sendMessage, fetchMe}, dispatch)
   };
 }
 

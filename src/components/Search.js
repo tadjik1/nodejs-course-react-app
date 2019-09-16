@@ -25,9 +25,14 @@ function Category({ categories, products, fetchCategories, fetchProductsByQuery,
     <div className="container">
       <div className="row">
         <CategoriesSideBar categories={categories} />
+        {products.products.length !== 0 &&
+          <div className="d-md-inline-flex d-lg-none col-lg-8 col-xl-9">
+            <h4 className="col-title mb-2 mt-2">Результаты поиска</h4>
+          </div>
+        }
         <div className="col-lg-8 col-xl-9">
           {products.products.length === 0 &&
-            <h4 className="col-title mb-2">{`По запросу ${values.query} ничего найти не удалось`}</h4>
+            <h4 className="col-title mb-2 mt-2">{`По запросу ${values.query} ничего найти не удалось`}</h4>
           }
           {products.products.map(product => {
             return (
@@ -44,9 +49,11 @@ function Category({ categories, products, fetchCategories, fetchProductsByQuery,
                   </div>
                 </div>
                 <div className="box-inner-col price-col">
-                  <h4 className="col-title price-text mb-2">€ 491</h4>
+                  <h4 className="col-title price-text mb-2">
+                    {formatter.format(product.price)}
+                  </h4>
                   <div>
-                    <button type="button" className="btn btn-outline-primary">Add to basket</button>
+                    <Link to={`/checkout/${product.id}`} className="btn btn-primary btn-lg">Купить</Link>
                   </div>
                 </div>
               </div>

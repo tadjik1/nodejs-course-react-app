@@ -96,7 +96,7 @@ export function fetchMe() {
         Authorization: `Bearer ${token}`
       }
     }).then(response => {
-      dispatch({type: FetchMeSuccess, me: response.data.me});
+      dispatch({type: FetchMeSuccess, profile: response.data});
     }).catch(error => {
       dispatch({type: FetchMeFailure, error: error.response.data.error});
     });

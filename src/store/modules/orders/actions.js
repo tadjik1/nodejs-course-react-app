@@ -15,7 +15,7 @@ export function checkout(data) {
     }).then(response => {
       dispatch({type: CheckoutSuccess, data, order: response.data.order});
     }).catch(error => {
-      dispatch({type: CheckoutFailure, data, error: error.response.data.error});
+      dispatch({type: CheckoutFailure, data, errors: error.response.data.errors});
     });
   };
 }

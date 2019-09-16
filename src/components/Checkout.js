@@ -8,7 +8,11 @@ import Loader from './Loader';
 
 const formatter = new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' });
 
-function Checkout({ product, draft, me, fetchProductById, fetchMe, checkout, match }) {
+function Checkout({ token, product, draft, me, fetchProductById, fetchMe, checkout, match, history }) {
+  useEffect(() => {
+    if (!token) return history.replace('/login');
+  }, []);
+  
   useEffect(() => {
     fetchMe();
     fetchProductById(match.params.id);
@@ -16,7 +20,7 @@ function Checkout({ product, draft, me, fetchProductById, fetchMe, checkout, mat
   
   const [state, setState] = useState('initial'); // 'pending'|'complete'
   
-  const [phone, setPhone] = useState('+7 111 12 12 123');
+  const [phone, setPhone] = useState('+71111212123');
   const [address, setAddress] = useState('Красная площадь, Москва, Россия');
   
   useEffect(() => {
@@ -25,19 +29,18 @@ function Checkout({ product, draft, me, fetchProductById, fetchMe, checkout, mat
       return;
     }
     
-    if (!!draft.error && state === 'pending') {
+    if (!!draft.errors && state === 'pending') {
       setState('initial');
       return;
     }
     
-    if (!draft.error && state === 'pending') {
+    if (!draft.errors && state === 'pending') {
       setState('complete');
     }
   }, [draft]);
   
   function onSubmit(event) {
     event.preventDefault();
-    console.log(state, draft);
     checkout({
       product: match.params.id,
       phone, address,
@@ -54,11 +57,9 @@ function Checkout({ product, draft, me, fetchProductById, fetchMe, checkout, mat
         <div className="col-lg-10">
           <Form onSubmit={onSubmit}>
             <h3 className="h5 mb-4 mt-4 text-md-center">Ваш заказ</h3>
-            {!!draft.error &&
-              <Alert color="warning">
-                {draft.error}
-              </Alert>
-            }
+            {!!draft.errors && Object.keys(draft.errors).map(error => (
+              <Alert color="warning" key={error}>{draft.errors[error]}</Alert>
+            ))}
             {state === 'complete' &&
               <Alert color="primary">
                 Ваш заказ был оформлен. На ваш email отправлено подтверждение.
@@ -129,6 +130,7 @@ function mapStateToProps(state, props) {
     product: state.products.byId[props.match.params.id] || {},
     draft: state.orders.draft,
     me: state.auth.me,
+    token: state.auth.token,
   };
 }
 

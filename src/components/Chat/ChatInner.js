@@ -32,8 +32,8 @@ const ChatInner = ({isWebsocketConnected, messages, sendMessage}) => {
             <ChatMessage
               key={message.id}
               income
-              date={message.time}
-              from={message.author}
+              date={message.date}
+              from={message.user}
               message={message.text} />
           );
         })}

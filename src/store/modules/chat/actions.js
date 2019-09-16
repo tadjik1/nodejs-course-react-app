@@ -1,4 +1,5 @@
 import client from '../../../network';
+import {Message} from './constants';
 
 import {
   FetchMessagesRequest, FetchMessagesSuccess, FetchMessagesFailure,
@@ -21,4 +22,8 @@ export function fetchMessages() {
       dispatch({type: FetchMessagesFailure, error: error.response.data.error});
     });
   }
+}
+
+export function sendMessage(message) {
+  return { type: Message, message };
 }

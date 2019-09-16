@@ -23,12 +23,14 @@ function Header({token, categories, fetchCategories, history, location}) {
   const [query, setQuery] = useState(values.query || '');
   
   useEffect(() => {
-    if (query !== values.query)
+    if (query !== values.query) {
       setQuery(values.query || '');
+    }
+
+    if (isOpen) handleToggleModal();
   }, [location.search]);
   
   useEffect(() => {
-    console.log(location.pathname);
     if (isOpen) handleToggleModal();
   }, [location.pathname]);
   
@@ -67,14 +69,11 @@ function Header({token, categories, fetchCategories, history, location}) {
               isOpen={isOpen}
               handleToggleModal={handleToggleModal}
             />
-            <NavbarToggler onClick={handleToggleModal} className="d-inline-flex d-md-none has-messages">
+            <NavbarToggler onClick={handleToggleModal} className="d-inline-flex d-md-none">
               <img src="/assets/icons/icon-menu.svg" alt="menu icon"/>
             </NavbarToggler>
             <Link to="/" className="navbar-brand"><strong>AnyShop</strong></Link>
           </div>
-          <Link to="/" className="mobile-search-menu-icon">
-            <img src="/assets/icons/icon-search.svg" alt="menu icon"/>
-          </Link>
 
           <Collapse isOpen={isOpenMenu} navbar>
             <Nav className="mr-auto" navbar>

@@ -4,12 +4,18 @@ import cx from 'classnames';
 
 const ChatMessage = ({income, outcome, date, from, message}) => (
   <div className={cx("chat__message", {'-income': income, '-outcome': outcome})}>
-    <div className="chat__message--date">{from} @ {date}</div>
+    <div className="chat__message--date">{from} @ {formatDate(date)}</div>
     <div className="chat__message--inner">
       {message}
     </div>
   </div>
 );
+
+function formatDate(date) {
+  const d = new Date(date);
+  return `${d.getHours()}:${d.getMinutes()}`;
+}
+
 
 ChatMessage.propTypes = {
   // message: PropTypes.string.isRequired

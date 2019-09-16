@@ -21,13 +21,12 @@ function Category({ categories, products, fetchCategories, fetchProductsByCatego
     for (const category of categories) {
       const subcategory = category.subcategories.find(({id}) => id === match.params.category);
       if (!subcategory) continue;
-  
       selectCategoryId(category.id);
       setSelectedSubcategory(subcategory);
       
       break;
     }
-  }, [categories.length]);
+  }, [match.params.category, categories.length]);
 
   if (!categories.length || !products.length) {
     return <Loader />;
@@ -47,16 +46,9 @@ function Category({ categories, products, fetchCategories, fetchProductsByCatego
                     <img src={product.images[0]} alt="img" />
                   </Link>
                   <div className="product-desc">
-                    <h4 className="col-title mb-2"><Link to={`/product/${product.id}`}>{product.title}</Link></h4>
-                    <div className="rate">
-                      <i className="icon-star checked"></i>
-                      <i className="icon-star checked"></i>
-                      <i className="icon-star checked"></i>
-                      <i className="icon-star checked"></i>
-                      <i className="icon-star checked"></i>
-                      <span className="rate-amount ml-2 d-inline-block d-md-none">121</span>
-                    </div>
-                    <p className="rate-amount d-none d-md-block mt-1">11 reviews</p>
+                    <h4 className="col-title mb-2">
+                      <Link to={`/product/${product.id}`}>{product.title}</Link>
+                    </h4>
                     <p className="price-text mb-0 mt-2 d-inline-block d-md-none">
                       <strong>{formatter.format(product.price)}</strong>
                     </p>
@@ -65,7 +57,7 @@ function Category({ categories, products, fetchCategories, fetchProductsByCatego
                 <div className="box-inner-col price-col">
                   <h4 className="col-title price-text mb-2">{formatter.format(product.price)}</h4>
                   <div>
-                    <button type="button" className="btn btn-outline-primary">Add to basket</button>
+                    <Link to={`/checkout/${product.id}`} className="btn btn-primary btn-lg">Купить</Link>
                   </div>
                 </div>
               </div>

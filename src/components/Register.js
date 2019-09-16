@@ -12,7 +12,7 @@ const fields = [
 ];
 
 function Register({registration, registerAction}) {
-  if (true || registration.complete) {
+  if (registration.complete) {
     return (
       <div className="container pt-5">
       <div className="row justify-content-center">

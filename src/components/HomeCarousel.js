@@ -7,32 +7,34 @@ import {
     CarouselIndicators
 } from 'reactstrap';
 
+import { Link } from 'react-router-dom';
+
 const items = [
     {
         id: '0',
+        originalTitle: 'Игрушки и развлечения',
         src: '/assets/images/default-slide-img.jpg',
-        altText: 'Slide 1',
-        captionTitle: 'BEST LAPTOP DEALS',
-        captionBtnText: 'View all DEALS',
-        captionBtnLink: '#',
+        altText: 'Игрушки',
+        captionTitle: 'Лучшие игрушки',
+        captionBtnText: 'Смотреть предложения',
         captionBtnIconSrc: '/assets/icons/icon-angle-white.svg'
     },
     {
         id: '1',
+        originalTitle: 'LCD телевизоры',
         src: '/assets/images/default-slide-img.jpg',
         altText: 'Slide 2',
-        captionTitle: 'BEST LAPTOP DEALS',
-        captionBtnText: 'View all DEALS',
-        captionBtnLink: '#',
+        captionTitle: 'Лучшие LCD телевизоры',
+        captionBtnText: 'Смотреть предложения',
         captionBtnIconSrc: '/assets/icons/icon-angle-white.svg'
     },
     {
         id: '2',
+        originalTitle: 'Ноутбуки и аксессуары',
         src: '/assets/images/default-slide-img.jpg',
         altText: 'Slide 3',
-        captionTitle: 'BEST LAPTOP DEALS',
-        captionBtnText: 'View all DEALS',
-        captionBtnLink: '#',
+        captionTitle: 'Лучшие ноутбуки',
+        captionBtnText: 'Смотреть предложения',
         captionBtnIconSrc: '/assets/icons/icon-angle-white.svg'
     }
 ];
@@ -75,8 +77,16 @@ class HomeCarousel extends Component {
 
     render() {
         const { activeIndex } = this.state;
-
+        const { categories } = this.props;
+        
         const slides = items.map((item) => {
+            const subcategory = categories.reduce((result, category) => {
+                if (result) return result;
+                const s = category.subcategories.find(({title}) => title === item.originalTitle);
+                if (s) return s;
+                return result;
+            }, null);
+            
             return (
                 <CarouselItem
                     onExiting={this.onExiting}
@@ -88,10 +98,10 @@ class HomeCarousel extends Component {
                         <div className="carousel-caption">
                             <h3 className="h1">{ item.captionTitle }</h3>
                             <div>
-                                <a className="btn" href={ item.captionBtnLink } role="button">
+                                <Link className="btn" to={ `/category/${subcategory.id}` } role="button">
                                     { item.captionBtnText }
                                     <img src={ item.captionBtnIconSrc } className="ml-3" alt="" />
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

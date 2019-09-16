@@ -32,7 +32,7 @@ export function fetchProductsByCategory(category) {
     
     dispatch({type: FetchProductsByCategoryRequest, category});
     
-    client.get('/api/products', { params: { category } })
+    client.get('/api/products', { params: { subcategory: category } })
       .then(response => {
         dispatch({type: FetchProductsByCategorySuccess, category, products: response.data.products});
       }).catch(error => {

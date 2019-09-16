@@ -28,7 +28,7 @@ function Home({ categories, recommendations, fetchCategories, fetchRecommendatio
             <ListGroupMenu categories={categories} />
           </div>
           <div className="col-lg-9">
-            <HomeCarousel/>
+            <HomeCarousel categories={categories} />
           </div>
         </div>
       </div>

@@ -109,7 +109,7 @@ export default function reducer(state = initialState, action) {
     case FetchMeRequest:
       return {...state, me: { ...initialState.me, fetching: true }};
     case FetchMeSuccess:
-      return {...state, me: { ...initialState.me, profile: action.me }};
+      return {...state, me: { ...initialState.me, profile: action.profile }};
     default:
       return state;
   }

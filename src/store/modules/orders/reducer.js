@@ -3,7 +3,7 @@ import {CheckoutRequest, CheckoutSuccess, CheckoutFailure} from "./constants";
 const initialState = {
   draft: {
     fetching: false,
-    error: null,
+    errors: null,
   },
 };
 
@@ -33,7 +33,7 @@ export default function reducer(state = initialState, action) {
         draft: {
           ...state.draft,
           fetching: false,
-          error: action.error,
+          errors: action.errors,
         }
       };
     default:
