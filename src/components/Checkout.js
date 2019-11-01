@@ -14,6 +14,7 @@ function Checkout({ token, product, draft, me, fetchProductById, fetchMe, checko
   }, []);
   
   useEffect(() => {
+    if (!token) return;
     fetchMe();
     fetchProductById(match.params.id);
   }, [match.params.id]);

@@ -48,7 +48,7 @@ function OAuthCallback({token, oauthCallback, oauthCallbackAction, match, locati
 }
 
 function mapStateToProps(state) {
-  return { oauthCallback: state.oauthCallback, token: state.token };
+  return { oauthCallback: state.auth.oauthCallback, token: state.auth.token };
 }
 
 const mapDispatchToProps = { oauthCallbackAction: oauthCallback };

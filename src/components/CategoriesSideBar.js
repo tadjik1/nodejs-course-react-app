@@ -19,7 +19,7 @@ export default function CategoriesSideBar({category, categories}) {
                   {category.subcategories.map(subcategory => {
                     return (
                       <li key={subcategory.id}>
-                        <Link to={`/category/${subcategory.id}`}>{subcategory.title}</Link>
+                        <Link to={`/category/${subcategory.slug}`}>{subcategory.title}</Link>
                       </li>
                     );
                   })}

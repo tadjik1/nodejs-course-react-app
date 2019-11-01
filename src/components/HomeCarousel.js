@@ -98,7 +98,7 @@ class HomeCarousel extends Component {
                         <div className="carousel-caption">
                             <h3 className="h1">{ item.captionTitle }</h3>
                             <div>
-                                <Link className="btn" to={ `/category/${subcategory.id}` } role="button">
+                                <Link className="btn" to={ `/category/${subcategory.slug}` } role="button">
                                     { item.captionBtnText }
                                     <img src={ item.captionBtnIconSrc } className="ml-3" alt="" />
                                 </Link>

@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { oauth } from '../store/modules/auth/actions';
 
-export default function Form(props) {
+function Form(props) {
   const [state, changeState] = useState({});
+  
+  function getOAuthLink(provider) {
+    return () => props.oauthAction({provider});
+  }
   
   function setValue(event) {
     changeState({
@@ -47,15 +53,15 @@ export default function Form(props) {
             className="h4 text-center font-weight-normal text-uppercase my-5 d-none d-lg-block">или
           </div>
           <div className="socials mb-5">
-            <a href="#" className="btn btn-primary btn-social -fb">
+            <a href="#" className="btn btn-primary btn-social -fb" onClick={getOAuthLink('facebook')}>
               <img src="/assets/icons/icon-facebook.svg" alt="" />
               Facebook
             </a>
-            <a href="#" className="btn btn-primary btn-social -vk">
+            <a href="#" className="btn btn-primary btn-social -vk"  onClick={getOAuthLink('vkontakte')}>
               <img src="/assets/icons/icon-vk.svg" alt="" />
               Vkontakte
             </a>
-            <a href="#" className="btn btn-primary btn-social -twitter">
+            <a href="#" className="btn btn-primary btn-social -twitter"  onClick={getOAuthLink('twitter')}>
               <img src="/assets/icons/icon-twitter.svg" alt="" />
               Twitter
             </a>
@@ -65,3 +71,7 @@ export default function Form(props) {
     </div>
   );
 }
+
+export default connect(null, {
+  oauthAction: oauth
+})(Form);
